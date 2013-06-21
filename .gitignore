@@ -35,6 +35,7 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+.Python
 
 # Lefty Project Local
 .DS_Store
