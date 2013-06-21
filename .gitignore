@@ -1,0 +1,46 @@
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+#lib  # Though "standard", this actually breaks us, cuz we have one of these.
+lib64
+__pycache__
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# Lefty Project Local
+.DS_Store
+include
+/setup.py
+config.yaml
+/application.log
+.Python
+.bootstrap.py
+/bootstrap.py
