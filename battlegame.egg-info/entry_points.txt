@@ -1,3 +1,0 @@
-[console_scripts]
-battlegame = application.server:serve
-

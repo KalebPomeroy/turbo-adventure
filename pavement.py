@@ -39,7 +39,7 @@ install_requires = [
 # setuptools tutorial.
 #
 setup(
-    name="battlegame",
+    name="turbo-adventure",
     version="0.1",
     
     # packaging infos
@@ -51,7 +51,7 @@ setup(
     
     entry_points={
         'console_scripts': [
-            'battlegame = application.server:serve'
+            'turbo-adventure = application.server:serve'
         ]
     },
     
