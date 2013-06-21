@@ -1,0 +1,9 @@
+#!/Users/kaleb.pomeroy/workspace/other/battle-chess/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'battlegame==0.1','console_scripts','battlegame'
+__requires__ = 'battlegame==0.1'
+import sys
+from pkg_resources import load_entry_point
+
+sys.exit(
+   load_entry_point('battlegame==0.1', 'console_scripts', 'battlegame')()
+)

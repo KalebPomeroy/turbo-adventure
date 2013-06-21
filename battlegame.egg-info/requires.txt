@@ -1,0 +1,6 @@
+setuptools
+cerberus
+coverage
+python-daemon
+pyyaml
+tornado

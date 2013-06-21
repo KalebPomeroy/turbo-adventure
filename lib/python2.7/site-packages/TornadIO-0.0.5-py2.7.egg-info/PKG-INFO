@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: TornadIO
+Version: 0.0.5
+Summary: Socket.io server implementation on top of Tornado framework
+Home-page: http://github.com/MrJoes/tornadio/
+Author: Serge S. Koval
+Author-email: serge.koval@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires: simplejson
+Requires: tornado

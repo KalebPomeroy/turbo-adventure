@@ -1,0 +1,11 @@
+README
+pavement.py
+battlegame.egg-info/PKG-INFO
+battlegame.egg-info/SOURCES.txt
+battlegame.egg-info/dependency_links.txt
+battlegame.egg-info/entry_points.txt
+battlegame.egg-info/not-zip-safe
+battlegame.egg-info/requires.txt
+battlegame.egg-info/top_level.txt
+tasks/__init__.py
+tasks/deployment.py
