@@ -14,10 +14,9 @@ from tornado.ioloop import IOLoop
 from tornado.web import StaticFileHandler, Application
 from tornadio2 import TornadioRouter
 
-from application.lib.autoload import autoload
 from application.config import config
 from application.lib.route import route
-from application.handlers.socketio import Mediator
+from application.handlers import *
 
 log = logging.getLogger(__name__)
 
@@ -75,13 +74,10 @@ def serve():
         ctx.open()
     else:
         log.info("Starting in debug mode")
-
-    autoload(resource_filename("application", "handlers"))
     
     routes = route.get_routes()
     routes.append((r"/public/(.*)", StaticFileHandler, {"path": "public"}))
-    routes = routes + TornadioRouter(Mediator).urls
-    log.info(routes)
+    routes = routes + TornadioRouter(socketio.SocketIOHandler).urls
 
     application = Application(routes, debug=options.debug, socket_io_port = 8000)
     
