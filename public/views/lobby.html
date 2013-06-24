@@ -1,0 +1,72 @@
+<html>
+<head>
+    <script src="public/js/lib/socket.io.js"></script>
+    <script src="public/js/lib/jquery2.js"></script>
+    <script data-main="public/js/main" src="public/js/lib/require.js"></script>
+    <link rel="stylesheet" media="screen" href="public/css/bootstrap.css">
+    <style type="text/css">
+            body, html {
+                height: 100%;
+                overflow: hidden;
+            }
+            .container{
+                margin: 5px 45px;
+                width: auto;
+            }
+
+            .navbar-inner {
+                height: 40px;
+            }
+
+            .scrollable {
+                height: 100%;
+                overflow: auto;
+            }
+
+            .max-height {
+                height: 85%;
+            }
+
+            .no-overflow {
+                overflow: hidden;
+            }
+
+            .pad40-top {
+                padding-top: 45px;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                header contents
+            </div>
+        </div>
+    </div>
+
+    <div class="container max-height">
+        <div class="row ">
+
+            <div class="span8">
+                <div class="pad40-top">
+
+                    <div class="scrollable max-height well" id="chatbox"></div>
+                    
+                    <input id='chat' />
+
+                    <input type='button' id="submit_button" value="Go" class="btn btn-primary"/>
+                </div>
+            </div>
+
+            <div class="span4 scrollable">
+                <div class="pad40-top">
+                    right sidebar contents
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>

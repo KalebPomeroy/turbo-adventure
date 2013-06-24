@@ -1,0 +1,47 @@
+ships:
+
+    Fighter -> Light Crusier -> Battlecruiser -> Destroyer -> Dreadnought
+
+    -
+        name: Fighter
+        description: |
+        The fighter is the typical single manned light attack ship. Low cost,
+        low resilience, low damage, high manueverability. Also cannot navigate 
+        deep space by themselves (require escort)
+    -
+        name: Dreadnought
+        description: |
+        Dreadnoughts are the strongest armoured, most heavily armmed ships in a 
+        fleet. They pack huge amounts of missiles, and are near impossible to destroy
+    -
+        name: Battlecruiser
+        description: |
+        This is the generalist ship of the fleet. It has medium armor with a reasonable
+        amount of firepower
+    -
+        name: Destroyer
+        description: |
+        This is a fleets ultimate weapons platform. It not very manueverabile or 
+        resilient, but it has more firepower than any other ship.
+    -
+        name: Light Cruiser
+        description: |
+        This is a step up from a fighter, but not heavily armored or outfitted well 
+        enough to be a battle cruiser. 
+
+
+    -
+        name: Aircraft Carrier
+        description: |
+        This is a docking station for fighters. It has average armor, average 
+        guns, and allows for more fighters to be played. Also are cheap.
+    -
+        name: Assault Ship
+        description: |
+        This ship has a very high attack value, but must be adjacent to do it. It
+        drops marines onto the other ship, which may have other effects
+    -
+        name: Explorer
+        description: |
+        Very fast small ship with little to no guns. It will either provide information
+        (not sure what or how) or maybe allow for other ships to have better shots?
