@@ -1,1 +1,1 @@
-from application.handlers import chat, socketio
+from application.handlers import lobby, socketio, login

@@ -1,2 +1,6 @@
 logging:
     file: application.log
+
+memcache:
+    servers:
+        - 127.0.0.1

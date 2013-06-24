@@ -6,7 +6,7 @@ define(['mediator'], function (mediator) {
     };
 
     function add_to_chat_box(data){ 
-        $(c).append(data.message + "<br />")
+        $(c).append("<p class='alert alert-info'>" + data.message + "</p>")
     }
 
     return {

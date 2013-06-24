@@ -29,6 +29,7 @@ install_requires = [
     'coverage',
     'python-daemon',
     'pyyaml',
+    'python-memcached',
     'tornado',
     'tornadio2'
 ]
