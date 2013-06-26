@@ -42,7 +42,7 @@
                                 {% for fleet in fleets %}   
                                     <tr>
                                         <td>
-                                            <a href="/hq/fleets/{{ fleet['_id'] }}">{{ fleet['name'] }}</a>
+                                            <a href="/hq/fleets/{{ fleet['fleet_id'] }}">{{ fleet['name'] }}</a>
                                         </td>
                                         <td>
                                             {{ fleet.get('credits', 0) }}
