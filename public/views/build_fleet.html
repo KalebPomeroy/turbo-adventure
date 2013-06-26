@@ -1,0 +1,104 @@
+<html>
+<head>
+    <script src="/public/js/lib/socket.io.js"></script>
+    <script src="/public/js/lib/jquery2.js"></script>
+    <script src="/public/js/lib/underscore.js"></script>
+    <script src="/public/js/lib/bootstrap.js"></script>
+    <script data-main="/public/js/build_fleet" src="/public/js/lib/require.js"></script>
+    <link rel="stylesheet" media="screen" href="/public/css/bootstrap.css">
+    <link rel="stylesheet" media="screen" href="/public/css/style.css">
+</head>
+
+<body>
+
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a href="/lobby">Lobby</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container max-height">
+        <div class="row ">
+
+            <div class="span8">
+                <div class="pad40-top scrollable">
+                    {% for ship in ships %}
+                        <div class='well row-fluid' style='width:90%'>
+                            <div class='span3'>
+                                <img src="/public/img/spaceships/{{ship['image_name']}}.png" />
+                            </div>
+                            <div class="span8">
+                                <div>
+                                    <h4 style='display:inline'>
+                                        {{ ship['name'] }}
+                                    </h4>
+                                    <span class='pull-right'>
+                                        <img src='/public/img/credit.png' width="15" height="20"  />
+                                        {{ ship['cost'] }}
+                                    </span>
+                                </div>
+                                <br />
+                                <table class='table'>
+                                    <tr><td><b>Speed</b></td><td>{{ ship['movement'] }}</td></tr>
+                                    <tr><td><b>Hull</b></td><td>{{ ship['hull_value'] }}</td></tr>
+                                    <tr><td><b>Shields</b></td><td>{{ ship['shields'] }}</td></tr>
+                                </table>
+                            </div>
+                            <a class='btn open-detail' data-toggle='modal' href="#{{ship['image_name']}}_details">Open details</a>
+                            <a class='btn pull-right btn-primary add_ship' data-ship="{{ship['name']}}" href="#">Add to Fleet</a>
+
+                        </div>
+                        <div id="{{ship['image_name']}}_details" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">{{ ship['name'] }}</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class='row-fluid'>
+                                    <div class='span3'>
+                                        <img src="/public/img/spaceships/{{ship['image_name']}}.png" />
+                                    </div>
+                                    <div class="span4">  
+                                        <table class='table'>
+                                            <tr><td><b>Speed</b></td><td>{{ ship['movement'] }}</td></tr>
+                                            <tr><td><b>Hull</b></td><td>{{ ship['hull_value'] }}</td></tr>
+                                            <tr><td><b>Shields</b></td><td>{{ ship['shields'] }}</td></tr>
+                                        </table>
+                                    </div>
+                                    <div class="span4">  
+                                        {% for type, classes in ship['weapons'].iteritems() %}
+                                            {% for cl in classes %}
+                                                <a href="#" data-toggle="popover" data-placement="right" 
+
+                                                    data-content="Strength: {{weapons[type][cl]['strength']}}
+                                                     Range: {{ weapons[type][cl]['range']}} {{weapons[type][cl]['special']}}" >
+                                                    {{ weapons[type][cl]['name']}}
+                                                </a><br />
+                                            {% end %}
+
+                                            
+                                        {% end %}
+                                    </div>
+                                </div>
+                                <br />
+                                <p>{{ship['description']}}</p>
+                            </div>
+                        </div>
+                    {% end %}
+                   
+                </div>
+            </div>
+
+            <div class="span4">
+                <div class="pad40-top">
+                    <div class="scrollable max-height" id="fleet">
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>

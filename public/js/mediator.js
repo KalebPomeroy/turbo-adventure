@@ -13,7 +13,7 @@ define(["./socketio",], function(socketio){
     };
  
     publish = function(channel){
-
+        
         var args = Array.prototype.slice.call(arguments, 1);
 
         socket.emit(channel, {"data": args});

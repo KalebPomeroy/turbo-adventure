@@ -1,0 +1,62 @@
+<html>
+<head>
+    <script src="/public/js/lib/socket.io.js"></script>
+    <script src="/public/js/lib/jquery2.js"></script>
+    <script src="/public/js/lib/underscore.js"></script>
+    <script src="/public/js/lib/bootstrap.js"></script>
+    <link rel="stylesheet" media="screen" href="/public/css/bootstrap.css">
+    <link rel="stylesheet" media="screen" href="/public/css/style.css">
+</head>
+
+<body>
+
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a href="/lobby">Lobby</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container max-height">
+        <div class="row ">
+
+            <div class="span8">
+                <div class="pad40-top scrollable">
+                    <p>
+                        <a href="/hq/fleets/new" class='btn btn-primary'>New Fleet</a>
+                    </p>
+
+                    <div>
+                        {% if len(fleets) == 0 %}
+                            Hrm... You have no fleets. Perhaps you should build one soon.
+                        {% else %}
+                            <table class='table'>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Credits</th>
+                                        <th>Created On</th>
+                                    </tr>
+                                </thead>
+                                {% for fleet in fleets %}   
+                                    <tr>
+                                        <td>
+                                            <a href="/hq/fleets/{{ fleet['_id'] }}">{{ fleet['name'] }}</a>
+                                        </td>
+                                        <td>
+                                            {{ fleet.get('credits', 0) }}
+                                        </td>
+                                        <td>{{ fleet['_id'].generation_time }}</td>
+
+                                    </tr>
+                                {% end %}
+                            </table>
+                        {% end %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>

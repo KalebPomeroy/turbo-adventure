@@ -4,3 +4,14 @@ logging:
 memcache:
     servers:
         - 127.0.0.1
+
+oAuth:
+    twitter:
+        key: o6M6Z8jzFhal858ZnyaZLg
+        secret: T5DiuGBtkzMTKGLTRNEafoFWHquMLILMd0nS8q6s
+
+mongodb:
+    database: saucer
+    server:
+        host: localhost
+        port: 27017

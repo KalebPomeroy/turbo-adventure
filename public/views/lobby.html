@@ -1,40 +1,11 @@
 <html>
 <head>
-    <script src="public/js/lib/socket.io.js"></script>
-    <script src="public/js/lib/jquery2.js"></script>
-    <script data-main="public/js/main" src="public/js/lib/require.js"></script>
-    <link rel="stylesheet" media="screen" href="public/css/bootstrap.css">
-    <style type="text/css">
-            body, html {
-                height: 100%;
-                overflow: hidden;
-            }
-            .container{
-                margin: 5px 45px;
-                width: auto;
-            }
-
-            .navbar-inner {
-                height: 40px;
-            }
-
-            .scrollable {
-                height: 100%;
-                overflow: auto;
-            }
-
-            .max-height {
-                height: 85%;
-            }
-
-            .no-overflow {
-                overflow: hidden;
-            }
-
-            .pad40-top {
-                padding-top: 45px;
-            }
-    </style>
+    <script src="/public/js/lib/socket.io.js"></script>
+    <script src="/public/js/lib/jquery2.js"></script>
+    <script src="/public/js/lib/underscore.js"></script>
+    <script data-main="/public/js/lobby" src="/public/js/lib/require.js"></script>
+    <link rel="stylesheet" media="screen" href="/public/css/bootstrap.css">
+    <link rel="stylesheet" media="screen" href="/public/css/style.css">
 </head>
 
 <body>
@@ -42,7 +13,7 @@
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
-                header contents
+                <a href="/hq">Build a fleet</a>
             </div>
         </div>
     </div>
@@ -55,15 +26,49 @@
 
                     <div class="scrollable max-height well" id="chatbox"></div>
                     
-                    <input id='chat' />
-
-                    <input type='button' id="submit_button" value="Go" class="btn btn-primary"/>
+                    <form id='say_form'>
+                        <input id='chat' style='width:500px' />
+                        <input type='submit' id="submit_button" value="Go" class="btn btn-primary"/>
+                    </form>
                 </div>
             </div>
 
-            <div class="span4 scrollable">
+            <div class="span4">
                 <div class="pad40-top">
-                    right sidebar contents
+                    <div class="scrollable max-height" id="queue">
+                        <div style='padding-bottom:5px'>
+                            <h4 style='display:inline'>Active Games</h4>
+                            <a href="game/new" class=' pull-right'> Create Game</a>
+                        </div>
+                        <table class='table'>
+                            <thead>
+                                <tr>
+                                    <th>Host</th>
+                                    <th>Opponent</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <script type='script/x-template' id="row_template">
+                            <tr>
+                                <td><%= host %></td>
+                                <td><%= opponent %></td>
+                                <td>
+                                    <a href="/game/<%= game_id %>/watch">
+                                        <img src='/public/img/icons/eye.png' />
+                                    </a>
+                                    &nbsp;&nbsp;
+                                    <% if(opponent==null) { %>
+                                        <a href="/game/<%= game_id %>/join">
+                                            <img src='/public/img/icons/user_add.png' />
+                                        </a>
+                                    <% } %> 
+                                </td>
+                            </tr>
+                        </script>
+                    </div>
                 </div>
             </div>
 

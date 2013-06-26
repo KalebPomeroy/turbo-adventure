@@ -1,0 +1,209 @@
+weapons:
+    Lasers:
+        Class One: 
+            name: Laser
+            safe_name: laser
+            strength: 3
+            range: 3
+            special: Ignores shields
+        Class Two: 
+            name: Heavy Laser
+            safe_name: heavy_laser
+            strength: 4
+            range: 3
+            special: Ignores shields
+        Class Three:
+            name: Fusion Laser
+            safe_name: fusion_laser
+            strength: 5
+            range: 4
+            special: Ignores shields
+    Standard:
+        Class One:
+            name: Railgun
+            safe_name: railgun
+            strength: 3
+            range: 5
+            special: ""
+        Class Two:
+            name: Heavy Railgun
+            safe_name: heavy_railgun
+            strength: 5
+            range: 5
+            special: ""
+        Class Three:
+            safe_name: nuclear_warheads
+            name: Nuclear Warheads
+            strength: 8
+            range: 5
+            special: ""
+    Missiles:
+        Class One:
+            safe_name: light_seeker_missiles
+            name: Light Seeker Missiles
+            strength: 2
+            range: 7
+            special: Penalty to evade
+        Class Two:
+            safe_name: frag_missiles
+            name: Fragmentation Missiles
+            strength: 4
+            range: 7
+            special: Penalty to evade
+        Class Three:
+            safe_name: plasma_missiles
+            name: Plasma Missiles
+            strength: 6
+            range: 7
+            special: Penalty to evade
+
+ships:
+    -
+        name: Fighter
+        image_name: fighter
+        cost: 300
+        movement: 6
+        hull_value: 5
+        shields: 1
+        weapons:
+            Lasers:
+                - Class One
+            Missiles:
+                - Class One
+            Standard:
+                - Class One
+                - Class Two
+
+        description: |
+            The fighter is a single manned, light attack ship. Low cost,
+            low resilience, low damage, high manueverability. Also cannot navigate 
+            deep space by themselves (require escort)
+    -
+        name: Light Cruiser 
+        image_name: light_cruiser
+        cost: 500
+        movement: 4
+        hull_value: 7
+        shields: 2
+        weapons:
+            Lasers:
+                - Class One
+                - Class Two
+            Missiles:
+                - Class One
+                - Class Two
+            Standard:
+                - Class One
+                - Class Two
+                - Class Three
+        description: |
+            This is a step up from a fighter, but not heavily armored or outfitted well 
+            enough to be a battle cruiser.     
+    -
+        name: Battlecruiser
+        image_name: battlecruiser
+        cost: 700
+        movement: 4
+        hull_value: 9
+        shields: 3
+        weapons:
+            Lasers:
+                - Class One
+                - Class Two
+                - Class Three
+            Missiles:
+                - Class One
+                - Class Two
+                - Class Three
+            Standard:
+                - Class One
+                - Class Two
+                - Class Three
+        description: |
+            This is the generalist ship of the fleet. It has medium armor with a reasonable
+            amount of firepower
+    -
+        name: Destroyer
+        image_name: destroyer
+        cost: 900
+        movement: 5
+        hull_value: 10
+        shields: 1
+        weapons:
+            Lasers:
+                - Class Two
+                - Class Three
+            Missiles:
+                - Class Two
+                - Class Three
+            Standard:
+                - Class Two
+                - Class Three
+        description: |
+            This is a fleets ultimate weapons platform. It not very manueverabile or 
+            resilient, but it has more firepower than any other ship.
+    -
+        name: Dreadnought
+        image_name: dreadnought
+        cost: 1200
+        movement: 4
+        hull_value: 12
+        shields: 4
+        weapons:
+            Lasers:
+                - Class Three
+            Missiles:
+                - Class Three
+            Standard:
+                - Class Two
+                - Class Three
+        description: |
+            Dreadnoughts are the strongest armoured, most heavily armmed ships in a 
+            fleet. They pack huge amounts of missiles, and are near impossible to destroy
+
+    -
+        name: Aircraft Carrier
+        image_name: aircraft_carrier
+        cost: 300
+        movement: 3
+        hull_value: 12
+        shields: 3
+        weapons:
+            Lasers:
+                - Class One
+            Standard:
+                - Class One
+                - Class Two
+        description: |
+            This is a docking station for fighters. It has average armor, average 
+            guns, and allows for more fighters to be played. For each 4 fighters beyond
+            the first 4, you must play one of these
+
+    -
+        name: Assault Ship
+        image_name: assault
+        cost: 700
+        movement: 5
+        hull_value: 10
+        shields: 1
+        weapons:
+            Lasers:
+                - Class One
+                - Class Two
+                - Class Three
+        description: |
+            This ship has a special high attack value, but must be adjacent to launch a 
+            boarding party.
+    -
+        name: Explorer
+        image_name: explorer
+        cost: 200
+        movement: 6
+        hull_value: 5
+        shields: 2
+        weapons:
+            Standard:
+                - Class One
+        description: |
+            Very fast small ship with little to no guns. It will either provide information
+            (not sure what or how) or maybe allow for other ships to have better shots?
