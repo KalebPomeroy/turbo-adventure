@@ -24,7 +24,7 @@ class HomeHandler(BaseHandler):
 
 
 @route(r'/user/create')
-class HomeHandler(BaseHandler):
+class UserHandler(BaseHandler):
 
     def silly_header(self):
         verbs = ["Preparing", "Readying", "Last check of the", "Loading", "Securing", 
