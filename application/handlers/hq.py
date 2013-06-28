@@ -1,3 +1,4 @@
+import json
 import yaml
 import logging
 from application.lib.route import route
@@ -48,6 +49,15 @@ class FleetHandler(BaseHandler):
         }
         self.write(render('build_fleet.html', data))
 
+@subscribe("hq.fleet.get")
+@gen.engine
+def add_ship(session_id, event):
+
+    user = mc_client().get(session_id)['user_id']
+    current_fleet = yield async(fleet.get_fleet, user, event['fleet_id'])
+    mediator.publish_to_socketio([session_id], "hq.fleet.update", {'fleet': current_fleet})
+
+
 @subscribe("hq.fleet.add_ship")
 @gen.engine
 def add_ship(session_id, event):
@@ -55,8 +65,8 @@ def add_ship(session_id, event):
     user = mc_client().get(session_id)['user_id']
 
     current_fleet = yield async(fleet.add_ship, user, event['fleet_id'], event['ship'])
-
-    mediator.publish_to_socketio([session_id], "hq.fleet.update", current_fleet)
+    log.info(current_fleet)
+    mediator.publish_to_socketio([session_id], "hq.fleet.update", {'fleet': current_fleet})
 
 
 

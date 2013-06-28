@@ -25,7 +25,7 @@
 
             <div class="span8">
                 <div class="pad40-top scrollable">
-                    {% for ship in ships %}
+                    {% for name, ship in ships.iteritems() %}
                         <div class='well row-fluid' style='width:90%'>
                             <div class='span3'>
                                 <img src="/public/img/spaceships/{{ship['image_name']}}.png" />
@@ -33,7 +33,7 @@
                             <div class="span8">
                                 <div>
                                     <h4 style='display:inline'>
-                                        {{ ship['name'] }}
+                                        {{ name }}
                                     </h4>
                                     <span class='pull-right'>
                                         <img src='/public/img/credit.png' width="15" height="20"  />
@@ -48,13 +48,13 @@
                                 </table>
                             </div>
                             <a class='btn open-detail' data-toggle='modal' href="#{{ship['image_name']}}_details">Open details</a>
-                            <a class='btn pull-right btn-primary add_ship' data-ship="{{ship['name']}}" href="#">Add to Fleet</a>
+                            <a class='btn pull-right btn-primary add_ship' data-ship="{{name}}" href="#">Add to Fleet</a>
 
                         </div>
                         <div id="{{ship['image_name']}}_details" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="myModalLabel">{{ ship['name'] }}</h3>
+                                <h3 id="myModalLabel">{{ name }}</h3>
                             </div>
                             <div class="modal-body">
                                 <div class='row-fluid'>

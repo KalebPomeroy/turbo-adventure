@@ -58,8 +58,7 @@ weapons:
             special: Penalty to evade
 
 ships:
-    -
-        name: Fighter
+    Fighter:
         image_name: fighter
         cost: 300
         movement: 6
@@ -78,8 +77,8 @@ ships:
             The fighter is a single manned, light attack ship. Low cost,
             low resilience, low damage, high manueverability. Also cannot navigate 
             deep space by themselves (require escort)
-    -
-        name: Light Cruiser 
+
+    Light Cruiser:
         image_name: light_cruiser
         cost: 500
         movement: 4
@@ -99,8 +98,8 @@ ships:
         description: |
             This is a step up from a fighter, but not heavily armored or outfitted well 
             enough to be a battle cruiser.     
-    -
-        name: Battlecruiser
+
+    Battlecruiser:
         image_name: battlecruiser
         cost: 700
         movement: 4
@@ -122,8 +121,8 @@ ships:
         description: |
             This is the generalist ship of the fleet. It has medium armor with a reasonable
             amount of firepower
-    -
-        name: Destroyer
+
+    Destroyer:
         image_name: destroyer
         cost: 900
         movement: 5
@@ -142,8 +141,8 @@ ships:
         description: |
             This is a fleets ultimate weapons platform. It not very manueverabile or 
             resilient, but it has more firepower than any other ship.
-    -
-        name: Dreadnought
+
+    Dreadnought:
         image_name: dreadnought
         cost: 1200
         movement: 4
@@ -161,8 +160,7 @@ ships:
             Dreadnoughts are the strongest armoured, most heavily armmed ships in a 
             fleet. They pack huge amounts of missiles, and are near impossible to destroy
 
-    -
-        name: Aircraft Carrier
+    Aircraft Carrier:
         image_name: aircraft_carrier
         cost: 300
         movement: 3
@@ -179,8 +177,7 @@ ships:
             guns, and allows for more fighters to be played. For each 4 fighters beyond
             the first 4, you must play one of these
 
-    -
-        name: Assault Ship
+    Assault Ship:
         image_name: assault
         cost: 700
         movement: 5
@@ -194,8 +191,8 @@ ships:
         description: |
             This ship has a special high attack value, but must be adjacent to launch a 
             boarding party.
-    -
-        name: Explorer
+            
+    Explorer:
         image_name: explorer
         cost: 200
         movement: 6

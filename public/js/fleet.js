@@ -6,8 +6,7 @@ define(['mediator'], function (mediator) {
     }
 
     function update_fleet(fleet){
-        console.log(fleet);
-
+        $("#fleet").html(JSON.stringify(fleet, undefined, 2));
         // Actually update it in the UI
     }
 
@@ -15,8 +14,12 @@ define(['mediator'], function (mediator) {
         mediator.publish('hq.fleet.add_ship', {'fleet_id': fleet_id, 'ship': ship})
     };
 
+    function get(){
+        mediator.publish('hq.fleet.get', {'fleet_id': fleet_id})
+    }
 
     return {
+        get: get,
         set_id: set_id,
         add_ship: add_ship,
         update: update_fleet,

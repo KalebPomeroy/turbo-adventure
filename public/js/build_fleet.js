@@ -9,6 +9,7 @@ $(function(){
         });
 
         mediator.subscribe('hq.fleet.update', fleet.update)
+        fleet.get()
 
     });    
     $('a').popover({placement:'right', container: 'body', trigger: 'hover'});
