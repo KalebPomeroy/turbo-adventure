@@ -63,7 +63,7 @@ class UserHandler(BaseHandler):
                 user_id = mc_client().get("temp:{0}".format(session_id))
                 user = yield async(add_user, user_id, username)
 
-                mc_client().set(session_id, {"username": username}, time=60*60*24*7)
+                mc_client().set(session_id, {"username": username, 'user_id': user_id}, time=60*60*24*7)
                 self.redirect(self.get_argument("next", "/lobby"))
             else:
                 self.write(render('create_account.html', {
