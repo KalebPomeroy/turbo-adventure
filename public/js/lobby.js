@@ -29,7 +29,7 @@ $(function(){
 
         q.set_queue_window($("#queue"))
 
-        mediator.subscribe('queue.add_game', q.add_game);
+        mediator.subscribe('queue.listed_games', q.list_games);
         mediator.subscribe('queue.remove_game', q.remove_game);
 
         mediator.publish("queue.list_games")

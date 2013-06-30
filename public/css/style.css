@@ -65,3 +65,8 @@ margin-top: 28px;
 .popover {
     z-index: 2000 !important;   
 }
+
+.bootstrap-select.open .dropdown-menu{
+    position: relative;
+    z-index: 3000 !important;
+}

@@ -5,18 +5,21 @@ weapons:
             safe_name: laser
             strength: 3
             range: 3
+            cost: 100
             special: Ignores shields
         Class Two: 
             name: Heavy Laser
             safe_name: heavy_laser
             strength: 4
             range: 3
+            cost: 200
             special: Ignores shields
         Class Three:
             name: Fusion Laser
             safe_name: fusion_laser
             strength: 5
             range: 4
+            cost: 300
             special: Ignores shields
     Standard:
         Class One:
@@ -24,18 +27,21 @@ weapons:
             safe_name: railgun
             strength: 3
             range: 5
+            cost: 100
             special: ""
         Class Two:
             name: Heavy Railgun
             safe_name: heavy_railgun
             strength: 5
             range: 5
+            cost: 200
             special: ""
         Class Three:
             safe_name: nuclear_warheads
             name: Nuclear Warheads
             strength: 8
             range: 5
+            cost: 300
             special: ""
     Missiles:
         Class One:
@@ -43,18 +49,21 @@ weapons:
             name: Light Seeker Missiles
             strength: 2
             range: 7
+            cost: 100
             special: Penalty to evade
         Class Two:
             safe_name: frag_missiles
             name: Fragmentation Missiles
             strength: 4
             range: 7
+            cost: 200
             special: Penalty to evade
         Class Three:
             safe_name: plasma_missiles
             name: Plasma Missiles
             strength: 6
             range: 7
+            cost: 300
             special: Penalty to evade
 
 ships:
@@ -159,23 +168,6 @@ ships:
         description: |
             Dreadnoughts are the strongest armoured, most heavily armmed ships in a 
             fleet. They pack huge amounts of missiles, and are near impossible to destroy
-
-    Aircraft Carrier:
-        image_name: aircraft_carrier
-        cost: 300
-        movement: 3
-        hull_value: 12
-        shields: 3
-        weapons:
-            Lasers:
-                - Class One
-            Standard:
-                - Class One
-                - Class Two
-        description: |
-            This is a docking station for fighters. It has average armor, average 
-            guns, and allows for more fighters to be played. For each 4 fighters beyond
-            the first 4, you must play one of these
 
     Assault Ship:
         image_name: assault

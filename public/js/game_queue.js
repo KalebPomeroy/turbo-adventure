@@ -5,18 +5,21 @@ define(['mediator'], function (mediator) {
         row_template = q.find("#row_template").text();
     }
 
-    function add_game(data){
-        row = _.template(row_template)(data);
-        q.find('tbody').append(row);
+    function list_games(data){
+        _.each(data, function(d){
+            console.log(d);
+            row = _.template(row_template)({game: d});
+            q.find('tbody').append(row);
+        });
     }
 
-    function remove_game(data){
-
+    function remove_game(){
+        // This is the UI piece when a game should be removed
     }
 
     return {
         set_queue_window: set_queue_window,
-        add_game: add_game,
+        list_games: list_games,
         remove_game: remove_game
     };
 });

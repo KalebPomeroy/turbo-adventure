@@ -4,9 +4,11 @@
     <script src="/public/js/lib/jquery2.js"></script>
     <script src="/public/js/lib/underscore.js"></script>
     <script src="/public/js/lib/bootstrap.js"></script>
+    <script src="/public/js/lib/bootstrap-select.js"></script>
     <script data-main="/public/js/build_fleet" src="/public/js/lib/require.js"></script>
     <link rel="stylesheet" media="screen" href="/public/css/bootstrap.css">
     <link rel="stylesheet" media="screen" href="/public/css/style.css">
+    <link rel="stylesheet" media="screen" href="/public/css/bootstrap-select.css">
 </head>
 
 <body>
@@ -28,7 +30,8 @@
                     {% for name, ship in ships.iteritems() %}
                         <div class='well row-fluid' style='width:90%'>
                             <div class='span3'>
-                                <img src="/public/img/spaceships/{{ship['image_name']}}.png" />
+                                <img src="/public/img/spaceships/{{ship['image_name']}}_blue.png" />
+                                <img src="/public/img/spaceships/{{ship['image_name']}}_red.png" />
                             </div>
                             <div class="span8">
                                 <div>
@@ -48,7 +51,7 @@
                                 </table>
                             </div>
                             <a class='btn open-detail' data-toggle='modal' href="#{{ship['image_name']}}_details">Open details</a>
-                            <a class='btn pull-right btn-primary add_ship' data-ship="{{name}}" href="#">Add to Fleet</a>
+                            <a class='btn pull-right btn-primary' data-toggle='modal' href="#{{ship['image_name']}}_add">Add to Fleet</a>
 
                         </div>
                         <div id="{{ship['image_name']}}_details" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -59,7 +62,8 @@
                             <div class="modal-body">
                                 <div class='row-fluid'>
                                     <div class='span3'>
-                                        <img src="/public/img/spaceships/{{ship['image_name']}}.png" />
+                                        <img src="/public/img/spaceships/{{ship['image_name']}}_blue.png" />
+                                        <img src="/public/img/spaceships/{{ship['image_name']}}_red.png" />
                                     </div>
                                     <div class="span4">  
                                         <table class='table'>
@@ -82,9 +86,49 @@
                                             
                                         {% end %}
                                     </div>
-                                </div>
+                                </div> 
+
                                 <br />
                                 <p>{{ship['description']}}</p>
+                            </div>
+                        </div>
+                        <div id="{{ship['image_name']}}_add" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">{{ name }}</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class='row-fluid'>
+                                    <div class='span3'>
+                                        <img src="/public/img/spaceships/{{ship['image_name']}}_blue.png" />
+                                        <img src="/public/img/spaceships/{{ship['image_name']}}_red.png" />
+                                    </div>
+                                    
+                                    <div class="span8">  
+                                        <input type='hidden' value="{{ name }}" name="ship"/>
+                                        {% for slot in ["Primary", "Secondary", "Tertiary"] %}
+                                            <p>
+                                                <b>{{slot}} </b>
+                                                <select class="bootstrap-select selectpicker" name='{{slot}}'>
+                                                    <option>None</option>
+                                                    {% for type, classes in ship['weapons'].iteritems() %}
+                                                        <optgroup label="{{type}}">
+                                                            {% for cl in classes %}
+                                                                <option data-subtext="{{cl}} - {{ weapons[type][cl]['cost'] }}">
+
+                                                                    {{ weapons[type][cl]['name'] }}
+                                                                </option>
+                                                            {% end %}
+                                                        </optgroup>
+                                                    {% end %}
+                                                </select>
+                                            </p>
+                                        {% end %}
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="modal-footer">
+                                <a href="#" data-target="{{ship['image_name']}}_add" class="add_ship btn btn-primary">Add Ship</a>
                             </div>
                         </div>
                     {% end %}
@@ -92,7 +136,7 @@
                 </div>
             </div>
 
-            <div class="span4">
+            <div class="span6">
                 <div class="pad40-top">
                     <div class="scrollable max-height" id="fleet">
                         
@@ -102,4 +146,34 @@
 
         </div>
     </div>
+    <script type='x-template' id='fleet-template'>
+        <p>
+            Fleet Name: <input id="fleet_name" value="<%= fleet.name %>" class="input input-large" name="fleet_name" />
+        </p>
+        <p>
+        Total Cost: <%= fleet.credits %>
+        </p>
+
+        <% _.each(_.pairs(fleet.ships), function(ship) { %>
+            <div class='well'>
+                <a class='pull-right label label-important decom'  data-ship="<%= ship[0] %>" href='#'>X</a>
+                <img src="/public/img/spaceships/<%= ship[1]['image_name'] %>_red.png" />
+                <%= ship[0] %>
+
+                <% has_weapon = false %>
+                <% _.each(['Primary', 'Secondary', 'Tertiary'], function(weapon){ %>
+                    <% if(ship[1]['weapons'][weapon]!="None"){ %>
+                        <% has_weapon = true %>
+                        <p><b><%= weapon %>: </b> <%= ship[1]['weapons'][weapon] %></p>
+                    <% } %>
+                <% }) %> 
+                <% if(!has_weapon) { %>
+                    <p><b>No Weapons</b></p>
+                <% } %>
+
+                <a class='btn' href='#' data-ship="<%= ship[0] %>">Modify Weapons</a>
+            </div>
+
+        <% }) %> 
+    </script>
 </body>

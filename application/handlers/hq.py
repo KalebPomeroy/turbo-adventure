@@ -57,6 +57,19 @@ def add_ship(session_id, event):
     current_fleet = yield async(fleet.get_fleet, user, event['fleet_id'])
     mediator.publish_to_socketio([session_id], "hq.fleet.update", {'fleet': current_fleet})
 
+@subscribe("hq.fleet.change_name")
+@gen.engine
+def change_name(session_id, event):
+    user = mc_client().get(session_id)['user_id']
+    yield async(fleet.change_name, user, event['fleet_id'], event['name'])
+
+@subscribe("hq.fleet.remove_ship")
+@gen.engine
+def add_ship(session_id, event):
+    user = mc_client().get(session_id)['user_id']
+
+    current_fleet = yield async(fleet.delete_ship, user, event['fleet_id'], event['ship'])
+    mediator.publish_to_socketio([session_id], "hq.fleet.update", {'fleet': current_fleet})
 
 @subscribe("hq.fleet.add_ship")
 @gen.engine
@@ -65,7 +78,6 @@ def add_ship(session_id, event):
     user = mc_client().get(session_id)['user_id']
 
     current_fleet = yield async(fleet.add_ship, user, event['fleet_id'], event['ship'])
-    log.info(current_fleet)
     mediator.publish_to_socketio([session_id], "hq.fleet.update", {'fleet': current_fleet})
 
 

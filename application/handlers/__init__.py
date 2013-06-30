@@ -1,1 +1,1 @@
-from application.handlers import lobby, socketio, login, home, game, hq
+from application.handlers import lobby, socketio, login, home, hq

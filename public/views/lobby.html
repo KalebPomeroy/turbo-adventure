@@ -36,10 +36,10 @@
                 <div class="pad40-top">
 
                     <p><a href="/hq" class="btn btn-primary">Build a fleet</a></p>
-                    <div class="scrollable max-height" id="queue" style='opacity: .2'>
+                    <div class="scrollable max-height" id="queue">
                         <div style='padding-bottom:5px'>
                             <h4 style='display:inline'>Active Games</h4>
-                            <a href="game/new" class=' pull-right'> Create Game</a>
+                            <a href="/games/new" class=' pull-right'> Create Game</a>
                         </div>
                         <table class='table'>
                             <thead>
@@ -54,15 +54,15 @@
                         </table>
                         <script type='script/x-template' id="row_template">
                             <tr>
-                                <td><%= host %></td>
-                                <td><%= opponent %></td>
+                                <td><%= game.host %></td>
+                                <td><%= game.opponent %></td>
                                 <td>
-                                    <a href="/game/<%= game_id %>/watch">
+                                    <a href="/game/<%= game.game_id %>/watch">
                                         <img src='/public/img/icons/eye.png' />
                                     </a>
                                     &nbsp;&nbsp;
-                                    <% if(opponent==null) { %>
-                                        <a href="/game/<%= game_id %>/join">
+                                    <% if(game.opponent==null) { %>
+                                        <a href="/game/<%= game.game_id %>/join">
                                             <img src='/public/img/icons/user_add.png' />
                                         </a>
                                     <% } %> 
