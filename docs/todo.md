@@ -1,6 +1,7 @@
 ### Technical
 - Fix ubiquitous xss problems (ie, chat)
 - Require login on all routes
+- Make sure memcache is running on startup
 
 ### Lobby
  - Join Game (player)
@@ -20,6 +21,6 @@
 ### Academy (how-to, learning, units, etc)
  - sample fleets (to clone)
 
- 
+
 NEXT STEPS:
  - Gamepage render

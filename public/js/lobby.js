@@ -2,7 +2,7 @@ $(function(){
 
     //
     // Set up the chat system
-    // 
+    //
     require(['chatbox', 'mediator'],function(chatbox, mediator){
 
         chatbox.set_chat_window($("#chatbox"))
@@ -20,21 +20,21 @@ $(function(){
             $("#chat").val("")
             return false;
         });
-    });    
+    });
 
     //
     // Set up the chat system
-    // 
+    //
     require(['game_queue', 'mediator'],function(q, mediator){
 
         q.set_queue_window($("#queue"))
 
-        mediator.subscribe('queue.listed_games', q.list_games);
-        mediator.subscribe('queue.remove_game', q.remove_game);
+        mediator.subscribe('game.listed_games', q.list_games);
+        mediator.subscribe('game.remove_game', q.remove_game);
 
-        mediator.publish("queue.list_games")
+        mediator.publish("game.list_games")
 
     });
 
-});    
+});
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+""" This init is not dumb and empty. It contains our config logic"""
 
 import yaml
 
@@ -12,6 +13,7 @@ class Config(dict):
         dict.__init__(self, *args, **kwargs)
 
     def load_file(self, file_name):
+        """ Given a config file, load it up """
         data = yaml.load(open(file_name, 'r'))
 
         if not isinstance(data, dict):

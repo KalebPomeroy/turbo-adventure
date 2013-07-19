@@ -34,10 +34,10 @@ class route(object):
         pass
 
     my_routes = route.get_routes()
-    
+
     From: https://gist.github.com/616347
     """
-    
+
     _routes = []
 
     def __init__(self, uri, name=None):
@@ -46,12 +46,12 @@ class route(object):
 
     def __call__(self, _handler):
         """gets called when we class decorate"""
-        log.info("Binding {0} to route {1}".format(_handler.__name__, self._uri))
-        
+        log.info("{0} to {1}".format(_handler.__name__, self._uri))
+
         name = self.name and self.name or _handler.__name__
         self._routes.append(tornado.web.url(self._uri, _handler, name=name))
         return _handler
-        
+
     @classmethod
-    def get_routes(self):
-        return self._routes
+    def get_routes(cls):
+        return cls._routes

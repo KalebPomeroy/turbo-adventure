@@ -1,3 +1,5 @@
+""" This includes the home page, user creation and other basic stuff """
+
 import logging
 
 from tornado.web import asynchronous
@@ -14,29 +16,24 @@ from random import choice
 
 log = logging.getLogger(__name__)
 
+
 @route(r'/')
 class HomeHandler(BaseHandler):
+    """ This is the default home page """
 
     def get(self):
         self.write(render('index.html'))
 
 
-
-
 @route(r'/user/create')
 class UserHandler(BaseHandler):
-
-    def silly_header(self):
-        verbs = ["Preparing", "Readying", "Last check of the", "Loading", "Securing", 
-                "Doubling"]
-        nouns = ["missiles", "lasers", "fighters", "docking bay", "warheads", 
-                "atomic subparticles"]
-        return "{0} {1}...".format(choice(verbs), choice(nouns))
+    "This is the user creation handler"
 
     def get(self):
         self.write(render('create_account.html', {
-            "silly_header": self.silly_header(),
-            "message": "While we do so, why don't you create an amazingly epic username."
+            "silly_header": silly_header(),
+            "message": "While we do so, why don't you create an"
+                       "amazingly epic username."
         }))
 
     @asynchronous
@@ -44,18 +41,19 @@ class UserHandler(BaseHandler):
     def post(self):
         username = self.get_argument('username')
         session_id = self.get_cookie("session_id")
-        
 
         if username == "":
             self.write(render('create_account.html', {
-                "silly_header": self.silly_header(),
-                "message": "Don't be silly. You can think of a better name than nothing."
+                "silly_header": silly_header(),
+                "message": "Don't be silly. You can think of a "
+                           "better name than nothing."
             }))
 
         elif (len(username) > 20):
             self.write(render('create_account.html', {
-                "silly_header": self.silly_header(),
-                "message": "That's way too epic. Try a shorter nickname (20 characters or less)."
+                "silly_header": silly_header(),
+                "message": "That's way too epic. Try a shorter nickname "
+                           "(20 characters or less)."
             }))
         else:
             user = yield async(get_user_by_username, username)
@@ -63,12 +61,29 @@ class UserHandler(BaseHandler):
                 user_id = mc_client().get("temp:{0}".format(session_id))
                 user = yield async(add_user, user_id, username)
 
-                mc_client().set(session_id, {"username": username, 'user_id': user_id}, time=60*60*24*7)
+                user_info = {
+                    "username": username,
+                    "user_id": user_id
+                }
+                mc_client().set(session_id, user_info, time=60*60*24*7)
                 self.redirect(self.get_argument("next", "/lobby"))
             else:
-                self.write(render('create_account.html', {
-                    "silly_header": self.silly_header(),
-                    "message": "Too epic - someone else already has that username. Try again."
-                }))
+                self.write(render(
+                    'create_account.html',
+                    {
+                        "silly_header": silly_header(),
+                        "message": "You're not special - someone else already "
+                                   " has that username. Try again."
+                    }
+                ))
 
         self.finish()
+
+
+def silly_header():
+    """ Return a semi random silly header for the user creation stuff """
+    verbs = ["Preparing", "Readying", "Last check of the",
+             "Loading", "Securing", "Doubling"]
+    nouns = ["missiles", "lasers", "fighters", "docking bay", "warheads",
+             "atomic subparticles"]
+    return "{0} {1}...".format(choice(verbs), choice(nouns))

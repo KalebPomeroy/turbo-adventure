@@ -1,24 +1,22 @@
 #!/usr/bin/env python
-import weakref
-import functools
 import logging
-import datetime
-
-import tornado
-from tornado import gen
 from tornado.ioloop import IOLoop
 
 log = logging.getLogger(__name__)
 
+
 class Mediator(object):
-    channels = {}   
+    channels = {}
     sockets = {}
 
     def get_users(self):
         return Mediator.sockets.keys()
 
     def get_other_users(self, session_id):
-        return [user for user in Mediator().get_users() if user != session_id] 
+        return [user for user in Mediator().get_users() if user != session_id]
+
+    def destroy_socket(self, session_id):
+        del Mediator.sockets[session_id]
 
     def register_socket(self, session_id, socket):
         if(session_id not in Mediator.sockets):
@@ -39,7 +37,6 @@ class Mediator(object):
                 for socket in sockets:
                     socket.emit(channel, event)
 
-
     def subscribe(self, channel, handler):
         if(channel not in Mediator.channels):
             Mediator.channels[channel] = []
@@ -47,6 +44,7 @@ class Mediator(object):
         if handler not in Mediator.channels[channel]:
             print("{0} to event {1}".format(handler, channel))
             Mediator.channels[channel].append(handler)
+
 
 def subscribe(channel):
     def wrap(func):
