@@ -7,8 +7,8 @@ memcache:
 
 oAuth:
     twitter:
-        key: o6M6Z8jzFhal858ZnyaZLg
-        secret: T5DiuGBtkzMTKGLTRNEafoFWHquMLILMd0nS8q6s
+        key: *********
+        secret: *********
 
 mongodb:
     database: saucer
