@@ -16,7 +16,7 @@ sdist
 develop-eggs
 .installed.cfg
 #lib  # Though "standard", this actually breaks us, cuz we have one of these.
-#lib
+/lib
 lib64
 __pycache__
 
@@ -41,7 +41,7 @@ nosetests.xml
 .DS_Store
 include
 /setup.py
-config.yaml
+application/config/config.yaml
 /application.log
 .Python
 .bootstrap.py
